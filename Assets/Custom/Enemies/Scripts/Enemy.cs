@@ -7,6 +7,7 @@ using Unity.LEGO.Minifig;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float speed = 8.0f;    
+    [SerializeField] float turnSpeed = 30.0f;  
     private PizzaToss target; 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        FaceTarget();
         navMeshAgent.SetDestination(target.transform.position);
     }
 
@@ -29,6 +31,11 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             ProcessDeath();
         }
+    }
+    private void FaceTarget () {
+        Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x,0,targetDirection.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     private void ProcessDeath() {
