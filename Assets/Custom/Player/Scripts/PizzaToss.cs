@@ -22,8 +22,7 @@ public class PizzaToss : MonoBehaviour
         if ( !minifigController.airborne && Input.GetButtonDown("Toss")) {            
             minifigController.maxForwardSpeed = 0;
             minifigAnimator.SetTrigger("Toss");
-            SpawnPizza();
-            
+            SpawnPizza();            
         }
     }
 
