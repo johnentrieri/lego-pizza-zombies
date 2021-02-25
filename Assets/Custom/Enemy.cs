@@ -6,16 +6,22 @@ using Unity.LEGO.Minifig;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] float speed = 8.0f;
+    
     private MinifigController target; 
     private NavMeshAgent navMeshAgent;
-    // Start is called before the first frame update
+    private Animator animator;
+    
+
+
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         target = FindObjectOfType<MinifigController>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         navMeshAgent.SetDestination(target.transform.position);
@@ -29,6 +35,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void ProcessDeath() {
-        Destroy(gameObject);
+        animator.SetTrigger("Die");
+        Destroy(gameObject,0.7f);
     }
 }
