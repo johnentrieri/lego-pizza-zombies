@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
 
     private void ProcessDeath() {
         EnemyExplode();
+        GetComponentInParent<EnemyManager>().EnemyDeathHandler(gameObject);
         Destroy(gameObject, 5.0f);
     }
 
