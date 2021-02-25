@@ -9,6 +9,7 @@ public class PizzaToss : MonoBehaviour
     private Animator minifigAnimator;
     private float minifigForwardSpeed;
     [SerializeField] GameObject pizzaPrefab;
+    [SerializeField] int playerHealth = 10;
 
     void Start()
     {
@@ -25,7 +26,18 @@ public class PizzaToss : MonoBehaviour
             SpawnPizza();            
         }
     }
+    public void InflictDamage(int dmg) {
+        playerHealth -= dmg;
+        if (playerHealth <= 0) { 
+            playerHealth = 0;
+            ProcessDeath(); 
+        }
+    }
 
+    private void ProcessDeath() {
+        minifigController.Explode();
+    }
+    
     private void TossComplete() {
         minifigController.maxForwardSpeed = minifigForwardSpeed;
     }
