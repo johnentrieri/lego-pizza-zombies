@@ -5,11 +5,14 @@ using Unity.LEGO.Minifig;
 
 public class PizzaToss : MonoBehaviour
 {
+    [SerializeField] GameObject pizzaPrefab;
+    [SerializeField] int playerHealth = 10;
+
     private MinifigController minifigController;
     private Animator minifigAnimator;
     private float minifigForwardSpeed;
-    [SerializeField] GameObject pizzaPrefab;
-    [SerializeField] int playerHealth = 10;
+    private int pizzaTokens = 0;
+
 
     void Start()
     {
@@ -44,5 +47,8 @@ public class PizzaToss : MonoBehaviour
 
     private void SpawnPizza() {        
         Instantiate(pizzaPrefab,transform.position,transform.rotation);
+    }
+    public void AddPizzaTokens(int quantity) {        
+        pizzaTokens += quantity;
     }
 }

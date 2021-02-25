@@ -12,7 +12,7 @@ namespace Unity.LEGO.Behaviours.Actions
         float m_InitialHoverOffset;
         Vector3 m_Offset;
         bool m_Initialised;
-        bool m_Collected;
+        public bool m_Collected;
 
         List<LEGOBehaviour> m_Behaviours = new List<LEGOBehaviour>();
 
