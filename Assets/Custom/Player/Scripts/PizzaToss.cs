@@ -7,16 +7,18 @@ public class PizzaToss : MonoBehaviour
 {
     [SerializeField] GameObject pizzaPrefab;
     [SerializeField] int playerHealth = 10;
+    [SerializeField] float tossRate = 2f;
     [SerializeField] AudioClip hurtAudioClip;
+    [SerializeField] float blinkTime = 0.5f;
+    [SerializeField]  float blinkPeriod = 0.1f;
 
     private MinifigController minifigController;
     private Animator minifigAnimator;
     private Renderer[] playerRenderers;
     private AudioSource audioSource;
     private float minifigForwardSpeed;
+    private float tossTimer;
     private int pizzaTokens = 0;
-    [SerializeField] float blinkTime = 0.5f;
-    [SerializeField]  float blinkPeriod = 0.1f;
     private bool isBlinking = false;
 
     void Start()
@@ -30,6 +32,7 @@ public class PizzaToss : MonoBehaviour
 
     void Update()
     {
+        if ( tossTimer > 0 ) { tossTimer -= Time.deltaTime; }
         if ( !minifigController.airborne && Input.GetButtonDown("Toss")) {            
             minifigController.maxForwardSpeed = 0;
             minifigAnimator.SetTrigger("Toss");
@@ -68,8 +71,10 @@ public class PizzaToss : MonoBehaviour
         minifigController.maxForwardSpeed = minifigForwardSpeed;
     }
 
-    private void SpawnPizza() {        
+    private void SpawnPizza() {     
+        if (tossTimer > 0) { return; }   
         Instantiate(pizzaPrefab,transform.position,transform.rotation);
+        tossTimer = 1.0f / tossRate;
     }
     public void AddPizzaTokens(int quantity) {        
         pizzaTokens += quantity;
