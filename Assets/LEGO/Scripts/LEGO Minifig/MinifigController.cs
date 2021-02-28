@@ -643,6 +643,11 @@ namespace Unity.LEGO.Minifig
             inputEnabled = enabled;
         }
 
+         public bool GetInputEnabled()
+        {
+            return(inputEnabled);
+        }
+
         public void PlaySpecialAnimation(SpecialAnimation animation, AudioClip specialAudioClip = null, Action<bool> onSpecialComplete = null)
         {
             animator.SetBool(playSpecialHash, true);

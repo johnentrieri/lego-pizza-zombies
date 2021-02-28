@@ -40,7 +40,7 @@ public class PizzaToss : MonoBehaviour
     void Update()
     {
         if ( tossTimer > 0 ) { tossTimer -= Time.deltaTime; }
-        if ( !minifigController.airborne && Input.GetButtonDown("Toss")) {            
+        if ( minifigController.GetInputEnabled() && !minifigController.airborne && Input.GetButtonDown("Toss")) {            
             minifigController.maxForwardSpeed = 0;
             minifigAnimator.SetTrigger("Toss");
             SpawnPizza();            
@@ -58,6 +58,10 @@ public class PizzaToss : MonoBehaviour
             playerHealth = 0;
             ProcessDeath(); 
         }
+    }
+    
+    public void SetPlayerInputEnabled(bool enabled) {
+        minifigController.SetInputEnabled(enabled);
     }
 
     private IEnumerator Blink() {
