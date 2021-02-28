@@ -11,7 +11,7 @@ namespace Unity.LEGO.Behaviours.Actions
 
         float m_InitialHoverOffset;
         Vector3 m_Offset;
-        bool m_Initialised;
+        public bool m_Initialised;
         public bool m_Collected;
 
         List<LEGOBehaviour> m_Behaviours = new List<LEGOBehaviour>();
@@ -118,6 +118,7 @@ namespace Unity.LEGO.Behaviours.Actions
         {
             if (m_Active)
             {
+
                 if (!m_Initialised)
                 {
                     // Make visible.
@@ -131,6 +132,8 @@ namespace Unity.LEGO.Behaviours.Actions
                     {
                         m_ParticleSystem.Play();
                     }
+
+                    m_ActiveColliders.Clear();
 
                     m_Initialised = true;
                 }
@@ -176,8 +179,10 @@ namespace Unity.LEGO.Behaviours.Actions
                         OnCollected?.Invoke(this);
                     }
                 }
+                
                 else
                 {
+                    /*
                     // Destroy all the LEGOBehaviours in scope (including this script).
                     foreach (var behaviour in m_Behaviours)
                     {
@@ -186,7 +191,9 @@ namespace Unity.LEGO.Behaviours.Actions
                             Destroy(behaviour);
                         }
                     }
+                    */
                 }
+                
             }
         }
 

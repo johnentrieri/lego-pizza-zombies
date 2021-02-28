@@ -52,7 +52,7 @@ namespace Unity.LEGO.UI
             m_Time += Time.deltaTime;
 
             // Move in.
-            m_RectTransform.anchoredPosition = new Vector2((m_RectTransform.sizeDelta.x + s_Margin) * -m_MoveInCurve.Evaluate(m_Time), m_RectTransform.anchoredPosition.y);
+            //m_RectTransform.anchoredPosition = new Vector2((m_RectTransform.sizeDelta.x + s_Margin) * -m_MoveInCurve.Evaluate(m_Time), m_RectTransform.anchoredPosition.y);
         }
     }
 }

@@ -11,10 +11,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] int damage = 1;
     [SerializeField] float attackRange = 5.0f;
     [SerializeField] float attackSpeed = 1.0f;
-    [SerializeField] int minLoot = 1;
-    [SerializeField] int maxLoot = 3;
-    [SerializeField] float lootRange = 3.0f;
-    [SerializeField] GameObject lootPrefab;
+    public int minLoot = 1;
+    public int maxLoot = 3;
+    public float lootRange = 3.0f;
+
+    //[SerializeField] GameObject lootPrefab;
+    //private Queue<GameObject> lootPool = new Queue<GameOb
+
     private PizzaToss target; 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -83,8 +86,8 @@ public class Enemy : MonoBehaviour
     private void ProcessDeath() {
         isAlive = false;
         EnemyExplode();
-        GetComponentInParent<EnemyManager>().EnemyDeathHandler(gameObject);
-        SpawnLoot();
+        GetComponentInParent<EnemyManager>().EnemyDeathHandler(this);
+        //SpawnLoot();
         Destroy(gameObject, 5.0f);
     }
 
@@ -104,6 +107,7 @@ public class Enemy : MonoBehaviour
         
     }
 
+    /*
     private void SpawnLoot() {
 
         int numLoot = LootRoll();
@@ -121,4 +125,5 @@ public class Enemy : MonoBehaviour
     private int LootRoll() {
         return( Random.Range(minLoot, maxLoot+1) );
     }
+    */
 }

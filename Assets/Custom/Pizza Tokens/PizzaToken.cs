@@ -9,10 +9,12 @@ public class PizzaToken : MonoBehaviour
     private PickupAction pickupAction;
     private PizzaToss pizzaToss;
     private bool isCollected = false;
+    private EnemyManager lootPoolManager;
 
     void Start()
     {
         pizzaToss = FindObjectOfType<PizzaToss>();
+        lootPoolManager = FindObjectOfType<EnemyManager>();
         pickupAction = GetComponentInChildren<PickupAction>();
     }
 
@@ -21,7 +23,24 @@ public class PizzaToken : MonoBehaviour
         if (!isCollected && pickupAction.m_Collected) { 
             isCollected = true;
             pizzaToss.AddPizzaTokens(value);
-            Destroy(gameObject,0.5f);
+            Recycle();
+            //Reanimate(posRNG);
         }
     }
+
+    public void Reanimate(Vector3 position) {
+        transform.position = position;
+        //gameObject.SetActive(true);
+    }
+
+    private void Recycle() {
+        lootPoolManager.AddToLootPool(this);
+        pickupAction.m_Collected = false;
+        pickupAction.m_Initialised = false;
+        isCollected = false;
+        //gameObject.SetActive(false);
+        
+    }
+
+    
 }
