@@ -25,9 +25,13 @@ public class Shop : MonoBehaviour
             if (!shopWindow.activeSelf) {
                 shopWindow.SetActive(true);
                 player.SetPlayerInputEnabled(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             } else {
                 shopWindow.SetActive(false);
                 player.SetPlayerInputEnabled(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = false;;
             }
         }
 

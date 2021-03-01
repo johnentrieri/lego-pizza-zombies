@@ -1671,6 +1671,7 @@ MonoBehaviour:
   lootPrefab: {fileID: 3452600609016939167, guid: 8f7153ad91470d04794e03b6eb0e6910,
     type: 3}
   waveText: {fileID: 1253165847}
+  maxEnemies: 5000
 --- !u!4 &478612801
 Transform:
   m_ObjectHideFlags: 0

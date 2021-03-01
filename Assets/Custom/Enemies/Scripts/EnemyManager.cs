@@ -13,11 +13,15 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] float lootRange = 4;
     [SerializeField] GameObject lootPrefab;
     [SerializeField] Text waveText;
+    [SerializeField] int maxEnemies = 100;
 
     private int waveNum, spawnedEnemies, enemiesRemaining;
     private EnemySpawnPoint[] spawnPoints;    
     private Stack<PizzaToken> lootPool = new Stack<PizzaToken>();
-    int hiddenGridCounter = 0;
+    private Stack<GameObject> enemyPool = new Stack<GameObject>();
+    private int hiddenGridCounter = 0;
+    private float hiddenGridOffset = 10.0f;
+    private float hiddenGridYOffset = -50.0f;
 
     [System.Serializable] class EnemyType {
         public GameObject enemyPrefab;
@@ -29,7 +33,8 @@ public class EnemyManager : MonoBehaviour
         spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
         waveNum = 1;
         UpdateWaveTextGUI();
-        StartCoroutine( StartNextWave() );
+        InitializeEnemyPool();
+        StartCoroutine( StartNextWave() );        
     }
 
     public void EnemyDeathHandler(Enemy enemy) {
@@ -43,18 +48,24 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void AddToLootPool(PizzaToken loot) {
-
-        //10 x Infinite x 10
-        float hiddenGridOffset = 10.0f;
-        float yOffset = -50.0f;
+     
         lootPool.Push(loot);
-        Vector3 hiddenLootPosition = new Vector3(
-            hiddenGridOffset * ( hiddenGridCounter % 10.0f),
-            yOffset + (-1.0f * hiddenGridOffset * Mathf.FloorToInt( hiddenGridOffset / 100.0f )),
-            hiddenGridOffset * Mathf.FloorToInt( hiddenGridOffset / 10.0f )
-        );
+        Vector3 hiddenLootPosition = GetNextHiddenGridPosition();        
         loot.transform.position = hiddenLootPosition;
         hiddenGridCounter++;
+    }
+
+    private void InitializeEnemyPool() {   
+        Vector3 spawnPosition = Vector3.zero;
+        EnemyType enemyType = null;
+
+        for (int i=0; i < maxEnemies; i++) {
+            spawnPosition = ChooseRandomSpawnPoint().position;
+            enemyType = ChooseRandomEnemyType();
+            GameObject enemy = Instantiate(enemyType.enemyPrefab,spawnPosition,Quaternion.identity,transform);
+            enemy.SetActive(false);
+            enemyPool.Push(enemy);
+        }
     }
 
     private IEnumerator StartNextWave() {      
@@ -66,9 +77,10 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies() {
         for (int i=0; i < spawnedEnemies; i++) {
-            Vector3 spawnPosition = ChooseRandomSpawnPoint().position;       
-            EnemyType enemyType = ChooseRandomEnemyType();
-            Instantiate(enemyType.enemyPrefab,spawnPosition,Quaternion.identity,transform);
+            //Vector3 spawnPosition = ChooseRandomSpawnPoint().position;       
+            //EnemyType enemyType = ChooseRandomEnemyType();
+            //Instantiate(enemyType.enemyPrefab,spawnPosition,Quaternion.identity,transform);
+            if (enemyPool.Count > 0) { enemyPool.Pop().SetActive(true); }
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
@@ -112,5 +124,14 @@ public class EnemyManager : MonoBehaviour
 
     private void UpdateWaveTextGUI() {
         waveText.text = "Wave " + waveNum.ToString();
+    }
+
+    private Vector3 GetNextHiddenGridPosition() {
+        Vector3 gridPosition = new Vector3(
+            hiddenGridOffset * ( hiddenGridCounter % 10.0f),
+            hiddenGridYOffset + (-1.0f * hiddenGridOffset * Mathf.FloorToInt( hiddenGridOffset / 100.0f )),
+            hiddenGridOffset * Mathf.FloorToInt( hiddenGridOffset / 10.0f )
+        );
+        return gridPosition;
     }
 }
