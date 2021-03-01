@@ -20,7 +20,6 @@ public class Shop : MonoBehaviour
     void Update()
     {
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        Debug.Log(distanceToPlayer);
 
         if ( distanceToPlayer <= playerShopDistance && Input.GetButtonDown("Shop")) {
             if (!shopWindow.activeSelf) {

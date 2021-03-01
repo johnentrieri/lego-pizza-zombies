@@ -5,8 +5,8 @@ using Unity.LEGO.Minifig;
 
 public class Pizza : MonoBehaviour
 {
-    [SerializeField] float range = 10.0f;
-    [SerializeField] float speed = 8.0f;
+    private float range = 10.0f;
+    private float speed = 10.0f;
     private bool isFlying = false;
     private Animator pizzaAnimator;
     private Vector3 startingPosition;
@@ -24,6 +24,11 @@ void Start() {
         if (isFlying) {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
+    }
+
+    public void SetSpeedandRange(float pizzaSpeed, float pizzaRange) {
+        speed = pizzaSpeed;
+        range = pizzaRange;
     }
 
     private void StartProjectile() {

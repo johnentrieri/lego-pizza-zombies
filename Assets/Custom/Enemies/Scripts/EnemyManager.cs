@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] EnemyType[] enemyTypes; 
-    [SerializeField] float timeBetweenSpawns = 0.5f;
+    [SerializeField] float timeBetweenSpawns = 1.0f;
     [SerializeField] float timeBetweenWaves = 5.0f;
     [SerializeField] GameObject lootPrefab;
+    [SerializeField] Text waveText;
 
     private int waveNum, spawnedEnemies, enemiesRemaining;
     private EnemySpawnPoint[] spawnPoints;    
-    private Queue<PizzaToken> lootPool = new Queue<PizzaToken>();
+    private Stack<PizzaToken> lootPool = new Stack<PizzaToken>();
+    int hiddenGridCounter = 0;
 
     [System.Serializable] class EnemyType {
         public GameObject enemyPrefab;
@@ -22,6 +25,7 @@ public class EnemyManager : MonoBehaviour
     {
         spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
         waveNum = 1;
+        UpdateWaveTextGUI();
         StartCoroutine( StartNextWave() );
     }
 
@@ -30,18 +34,24 @@ public class EnemyManager : MonoBehaviour
 
         if( --enemiesRemaining <= 0) {
             waveNum++;
+            UpdateWaveTextGUI();
             StartCoroutine( StartNextWave() );
         }
     }
 
     public void AddToLootPool(PizzaToken loot) {
-        lootPool.Enqueue(loot);
+
+        //10 x Infinite x 10
+        float hiddenGridOffset = 10.0f;
+        float yOffset = -50.0f;
+        lootPool.Push(loot);
         Vector3 hiddenLootPosition = new Vector3(
-            lootPool.Count * 10.0f,
-            -99.0f,
-            0.0f
+            hiddenGridOffset * ( hiddenGridCounter % 10.0f),
+            yOffset + (-1.0f * hiddenGridOffset * Mathf.FloorToInt( hiddenGridOffset / 100.0f )),
+            hiddenGridOffset * Mathf.FloorToInt( hiddenGridOffset / 10.0f )
         );
         loot.transform.position = hiddenLootPosition;
+        hiddenGridCounter++;
     }
 
     private IEnumerator StartNextWave() {      
@@ -72,7 +82,8 @@ public class EnemyManager : MonoBehaviour
             );
 
             if (lootPool.Count > 0) {
-                PizzaToken loot = lootPool.Dequeue();
+                PizzaToken loot = lootPool.Pop();
+                hiddenGridCounter--;
                 loot.Reanimate(lootSpawnPosition);
             } else {            
                 Instantiate(lootPrefab,lootSpawnPosition,Quaternion.identity);
@@ -94,5 +105,9 @@ public class EnemyManager : MonoBehaviour
     private Transform ChooseRandomSpawnPoint() {
         int rngSpawn = Random.Range(0,spawnPoints.Length);
         return spawnPoints[rngSpawn].transform;
+    }
+
+    private void UpdateWaveTextGUI() {
+        waveText.text = "Wave " + waveNum.ToString();
     }
 }
