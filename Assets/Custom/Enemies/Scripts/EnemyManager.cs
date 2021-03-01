@@ -8,6 +8,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] EnemyType[] enemyTypes; 
     [SerializeField] float timeBetweenSpawns = 1.0f;
     [SerializeField] float timeBetweenWaves = 5.0f;
+    [SerializeField] int minLoot = 1;
+    [SerializeField] int maxLoot = 3;
+    [SerializeField] float lootRange = 4;
     [SerializeField] GameObject lootPrefab;
     [SerializeField] Text waveText;
 
@@ -76,9 +79,9 @@ public class EnemyManager : MonoBehaviour
 
         for (int i=0;i<numLoot;i++) {
             Vector3 lootSpawnPosition = new Vector3(
-                enemy.transform.position.x + Random.Range(0,enemy.lootRange),
+                enemy.transform.position.x + Random.Range(0,lootRange),
                 0,
-                enemy.transform.position.z + Random.Range(0,enemy.lootRange)
+                enemy.transform.position.z + Random.Range(0,lootRange)
             );
 
             if (lootPool.Count > 0) {
@@ -92,7 +95,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     private int LootRoll(Enemy enemy) {
-        return( Random.Range(enemy.minLoot, enemy.maxLoot+1) );
+        return( Random.Range(minLoot, maxLoot+1) );
     }
 
     private EnemyType ChooseRandomEnemyType() {

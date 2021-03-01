@@ -11,12 +11,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] int damage = 1;
     [SerializeField] float attackRange = 5.0f;
     [SerializeField] float attackSpeed = 1.0f;
-    public int minLoot = 1;
-    public int maxLoot = 3;
-    public float lootRange = 3.0f;
-
-    //[SerializeField] GameObject lootPrefab;
-    //private Queue<GameObject> lootPool = new Queue<GameOb
 
     private PizzaToss target; 
     private NavMeshAgent navMeshAgent;
@@ -103,27 +97,6 @@ public class Enemy : MonoBehaviour
         }
 
         animator.gameObject.GetComponent<CharacterController>().enabled = false;
-        animator.gameObject.GetComponent<MinifigController>().enabled = false;
-        
+        animator.gameObject.GetComponent<MinifigController>().enabled = false;        
     }
-
-    /*
-    private void SpawnLoot() {
-
-        int numLoot = LootRoll();
-
-        for (int i=0;i<numLoot;i++) {
-            Vector3 lootSpawnPosition = new Vector3(
-                transform.position.x + Random.Range(0,lootRange),
-                0,
-                transform.position.z + Random.Range(0,lootRange)
-            );
-            Instantiate(lootPrefab,lootSpawnPosition,Quaternion.identity);
-        }
-    }
-
-    private int LootRoll() {
-        return( Random.Range(minLoot, maxLoot+1) );
-    }
-    */
 }
