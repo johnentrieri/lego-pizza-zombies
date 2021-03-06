@@ -14,8 +14,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject lootPrefab;
     [SerializeField] GameObject winObjectPrefab;
     [SerializeField] Text waveText;
-    [SerializeField] int maxWaves = 3;
-    [SerializeField] int maxEnemies = 100;
+    [SerializeField] int maxWaves = 28;
+    [SerializeField] int maxEnemies = 250;
 
     private int waveNum, spawnedEnemies, enemiesRemaining;
     private EnemySpawnPoint[] spawnPoints;    
@@ -24,6 +24,8 @@ public class EnemyManager : MonoBehaviour
     private int hiddenGridCounter = 0;
     private float hiddenGridOffset = 10.0f;
     private float hiddenGridYOffset = -50.0f;
+    private float enemySpeed = 8.0f;
+    private float enemyAttackSpeed = 1.0f;
 
     [System.Serializable] class EnemyType {
         public GameObject enemyPrefab;
@@ -80,13 +82,16 @@ public class EnemyManager : MonoBehaviour
     }
 
     private IEnumerator StartNextWave() {      
-        //spawnedEnemies = waveNum;
-        spawnedEnemies = 0;
-        switch (waveNum) {
-            default:
-                spawnedEnemies = waveNum;
-                break;
-        }
+
+        
+        if (waveNum < 6) { spawnedEnemies = waveNum; }
+        else if (waveNum < 10) { spawnedEnemies = 6; }
+        else if (waveNum < 15) { spawnedEnemies = 8; }
+        else if (waveNum < 20) { spawnedEnemies = 10; }
+        else if (waveNum < 25) { spawnedEnemies = 12; }
+        else { spawnedEnemies = 13; }
+        enemySpeed += 0.4f;
+        enemyAttackSpeed += 0.05f;
 
         enemiesRemaining = spawnedEnemies;   
         yield return new WaitForSeconds(timeBetweenWaves);
@@ -98,7 +103,12 @@ public class EnemyManager : MonoBehaviour
             //Vector3 spawnPosition = ChooseRandomSpawnPoint().position;       
             //EnemyType enemyType = ChooseRandomEnemyType();
             //Instantiate(enemyType.enemyPrefab,spawnPosition,Quaternion.identity,transform);
-            if (enemyPool.Count > 0) { enemyPool.Pop().SetActive(true); }
+            if (enemyPool.Count > 0) { 
+                GameObject tempEnemy = enemyPool.Pop();
+                tempEnemy.GetComponentInChildren<Enemy>().SetSpeed(enemySpeed);
+                tempEnemy.GetComponentInChildren<Enemy>().SetAttackSpeed(enemyAttackSpeed);
+                tempEnemy.SetActive(true);
+            }
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
@@ -141,7 +151,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void UpdateWaveTextGUI() {
-        waveText.text = "Hour " + waveNum.ToString();
+        waveText.text = "Minute " + waveNum.ToString();
     }
 
     private Vector3 GetNextHiddenGridPosition() {

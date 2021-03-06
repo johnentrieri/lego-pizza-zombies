@@ -49,6 +49,14 @@ public class Enemy : MonoBehaviour
         }            
     }
 
+    public void SetSpeed(float newSpeed) {
+        speed = newSpeed;
+    }
+
+    public void SetAttackSpeed(float newAttackSpeed) {
+        attackSpeed = newAttackSpeed;
+    }
+
     private void ChaseTarget() {
         if (!isAlive) { return; }
         animator.SetBool("Attack",false);

@@ -1281,8 +1281,8 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 6915224947371457900, guid: 498ec3edc18ff8e43b9da3beb0d6997a,
       type: 3}
     earliestWave: 0
-  timeBetweenSpawns: 0.5
-  timeBetweenWaves: 3
+  timeBetweenSpawns: 1
+  timeBetweenWaves: 5
   minLoot: 1
   maxLoot: 3
   lootRange: 4
@@ -1290,8 +1290,8 @@ MonoBehaviour:
     type: 3}
   winObjectPrefab: {fileID: 847859463}
   waveText: {fileID: 1253165847}
-  maxWaves: 12
-  maxEnemies: 100
+  maxWaves: 28
+  maxEnemies: 250
 --- !u!4 &478612801
 Transform:
   m_ObjectHideFlags: 0
