@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour
         isAlive = false;
         EnemyExplode();
         GetComponentInParent<EnemyManager>().EnemyDeathHandler(this);
-        //SpawnLoot();
         Destroy(gameObject, 5.0f);
     }
 
