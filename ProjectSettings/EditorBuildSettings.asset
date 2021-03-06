@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Custom/Scenes/Game.unity
     guid: b43c061884e489d4ba3c8152c0178a9d
+  - enabled: 1
+    path: Assets/Custom/Scenes/Lose Menu.unity
+    guid: cccc586c869b23544902411184bcdb02
+  - enabled: 1
+    path: Assets/Custom/Scenes/Win Menu.unity
+    guid: 27a62970e1bda674f98766810f031622
+  - enabled: 1
+    path: Assets/Custom/Scenes/Main Menu.unity
+    guid: 1e5516dd1f7f7aa49a5e4015b6b6db00
   m_configObjects: {}

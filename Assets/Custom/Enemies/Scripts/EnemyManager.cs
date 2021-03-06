@@ -12,7 +12,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] int maxLoot = 3;
     [SerializeField] float lootRange = 4;
     [SerializeField] GameObject lootPrefab;
+    [SerializeField] GameObject winObjectPrefab;
     [SerializeField] Text waveText;
+    [SerializeField] int maxWaves = 3;
     [SerializeField] int maxEnemies = 100;
 
     private int waveNum, spawnedEnemies, enemiesRemaining;
@@ -31,6 +33,7 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
+        winObjectPrefab.SetActive(false);
         waveNum = 1;
         UpdateWaveTextGUI();
         InitializeEnemyPool();
@@ -42,8 +45,12 @@ public class EnemyManager : MonoBehaviour
 
         if( --enemiesRemaining <= 0) {
             waveNum++;
-            UpdateWaveTextGUI();
-            StartCoroutine( StartNextWave() );
+            if (waveNum > maxWaves) {
+                ProcessWavesComplete();
+            } else {
+                UpdateWaveTextGUI();
+                StartCoroutine( StartNextWave() );
+            }
         }
     }
 
@@ -68,8 +75,19 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void ProcessWavesComplete() {
+        winObjectPrefab.SetActive(true);
+    }
+
     private IEnumerator StartNextWave() {      
-        spawnedEnemies = waveNum;
+        //spawnedEnemies = waveNum;
+        spawnedEnemies = 0;
+        switch (waveNum) {
+            default:
+                spawnedEnemies = waveNum;
+                break;
+        }
+
         enemiesRemaining = spawnedEnemies;   
         yield return new WaitForSeconds(timeBetweenWaves);
         StartCoroutine( SpawnEnemies() ); 
@@ -123,7 +141,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void UpdateWaveTextGUI() {
-        waveText.text = "Wave " + waveNum.ToString();
+        waveText.text = "Hour " + waveNum.ToString();
     }
 
     private Vector3 GetNextHiddenGridPosition() {
