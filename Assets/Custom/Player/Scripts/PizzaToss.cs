@@ -21,6 +21,7 @@ public class PizzaToss : MonoBehaviour
     [SerializeField] int pizzaSlingerCost = 500;
     [SerializeField] int dynamiteCost = 10000;
     [SerializeField] AudioClip hurtAudioClip;
+    [SerializeField] AudioClip newWaveAudioClip;
     [SerializeField] float blinkTime = 0.5f;
     [SerializeField] float blinkPeriod = 0.1f;
     [SerializeField] TMPro.TextMeshProUGUI tokenValueText;
@@ -71,6 +72,10 @@ public class PizzaToss : MonoBehaviour
             playerHealth = 0;
             ProcessDeath(); 
         }
+    }
+
+    public void PlayNewWaveAudio() {
+        audioSource.PlayOneShot(newWaveAudioClip);
     }
     
     public void SetPlayerInputEnabled(bool enabled) {

@@ -26,6 +26,7 @@ public class EnemyManager : MonoBehaviour
     private float hiddenGridYOffset = -50.0f;
     private float enemySpeed = 8.0f;
     private float enemyAttackSpeed = 1.0f;
+    private PizzaToss player;
 
     [System.Serializable] class EnemyType {
         public GameObject enemyPrefab;
@@ -34,6 +35,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<PizzaToss>();
         spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
         winObjectPrefab.SetActive(false);
         waveNum = 1;
@@ -51,6 +53,7 @@ public class EnemyManager : MonoBehaviour
                 ProcessWavesComplete();
             } else {
                 UpdateWaveTextGUI();
+                player.PlayNewWaveAudio();
                 StartCoroutine( StartNextWave() );
             }
         }
@@ -81,8 +84,7 @@ public class EnemyManager : MonoBehaviour
         winObjectPrefab.SetActive(true);
     }
 
-    private IEnumerator StartNextWave() {      
-
+    private IEnumerator StartNextWave() {   
         
         if (waveNum < 6) { spawnedEnemies = waveNum; }
         else if (waveNum < 10) { spawnedEnemies = 6; }
