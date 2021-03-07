@@ -36,9 +36,11 @@ public class PizzaToss : MonoBehaviour
     private Animator minifigAnimator;
     private Renderer[] playerRenderers;
     private AudioSource audioSource;
+    private Narrator narrator;
     private float tossTimer;
     private int pizzaTokens = 0;
     private bool isBlinking = false;
+    private bool hasIssuedShopNarration = false;
     private int maxHP;
 
     void Start()
@@ -46,7 +48,9 @@ public class PizzaToss : MonoBehaviour
         minifigController = GetComponent<MinifigController>();
         minifigAnimator = GetComponent<Animator>();
         playerRenderers = GetComponentsInChildren<Renderer>();  
-        audioSource = GetComponent<AudioSource>();      
+        audioSource = GetComponent<AudioSource>();
+        narrator = FindObjectOfType<Narrator>();
+
         minifigController.maxForwardSpeed = playerSpeed;
         tokenValueText.text = pizzaTokens.ToString();
         maxHP = playerHealth;
@@ -55,14 +59,28 @@ public class PizzaToss : MonoBehaviour
 
     void Update()
     {
+        // Decrement Toss Timer (Toss Rate)
         if ( tossTimer > 0 ) { tossTimer -= Time.deltaTime; }
+
+        // Toss Pizza
         else if ( minifigController.GetInputEnabled() && !minifigController.airborne && Input.GetButtonDown("Toss")) {            
             minifigController.maxForwardSpeed = 0;
             minifigAnimator.SetTrigger("Toss");
             SpawnPizza();            
         }
+
+        // Fall-off-Map Handler
         if (transform.position.y < -10) {
             InflictDamage(playerHealth);
+        }
+
+        // Shop Narration
+        if ( !hasIssuedShopNarration ) {
+            if (pizzaTokens >= PriceOfLowestCostItem()) {
+                narrator.Narrate("Looks like you've collected a couple of Pizza Tokens", 5.0f, 0.5f );
+                narrator.Narrate("You can head back to the shop at any time and trade them in for upgrades", 5.0f, 6.0f );
+                hasIssuedShopNarration = true;
+            }
         }
     }
     public void InflictDamage(int dmg) {
@@ -198,5 +216,14 @@ public class PizzaToss : MonoBehaviour
 
         // Dynamite Shop Price
         dynamiteCostText.text = dynamiteCost.ToString();
+    }
+
+    private int PriceOfLowestCostItem() {
+        int minCost = 99999;
+        if (speedPotionCost < minCost) { minCost = speedPotionCost; }
+        if (pizzaSlingerCost < minCost) { minCost = pizzaSlingerCost; }
+        if (hotChocolateCost < minCost) { minCost = hotChocolateCost; }
+        if (dynamiteCost < minCost) { minCost = dynamiteCost; }
+        return minCost;
     }
 }
