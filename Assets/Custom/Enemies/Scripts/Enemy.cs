@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private float distanceToTarget;
     private float attackTimer = 0.0f;
-    private bool isAlive;
+    public bool isAlive;
     
 
     void Start()
@@ -56,6 +56,12 @@ public class Enemy : MonoBehaviour
     public void SetAttackSpeed(float newAttackSpeed) {
         attackSpeed = newAttackSpeed;
     }
+    public void ProcessDeath() {
+        isAlive = false;
+        EnemyExplode();
+        GetComponentInParent<EnemyManager>().EnemyDeathHandler(this);
+        Destroy(gameObject, 5.0f);
+    }
 
     private void ChaseTarget() {
         if (!isAlive) { return; }
@@ -83,14 +89,7 @@ public class Enemy : MonoBehaviour
         Quaternion lookRotation = transform.rotation;
         if (newLookRotation != Vector3.zero) { lookRotation = Quaternion.LookRotation(newLookRotation); }
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-    }
-
-    private void ProcessDeath() {
-        isAlive = false;
-        EnemyExplode();
-        GetComponentInParent<EnemyManager>().EnemyDeathHandler(this);
-        Destroy(gameObject, 5.0f);
-    }
+    }    
 
     private void EnemyExplode() {
         animator.gameObject.GetComponent<CharacterController>().enabled = true;

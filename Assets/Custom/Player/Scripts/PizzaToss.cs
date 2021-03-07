@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PizzaToss : MonoBehaviour
 {
     [SerializeField] GameObject pizzaPrefab;
+    [SerializeField] GameObject enemyManager;
     [SerializeField] int playerHealth = 10;
     [SerializeField] int hotChocolateCost = 1000;
     [SerializeField] float playerSpeed = 10;
@@ -88,24 +89,24 @@ public class PizzaToss : MonoBehaviour
     public void ApplySpeedPotion() {
         if (pizzaTokens >= speedPotionCost && playerSpeed < maxSpeed) {
             SubtractPizzaTokens(speedPotionCost);
-            speedPotionCost *= 2;
-            UpdateGUI();
+            speedPotionCost *= 2;            
             playerSpeed += 2;
             if (playerSpeed > maxSpeed) { playerSpeed = maxSpeed; }
             minifigController.maxForwardSpeed = playerSpeed;
+            UpdateGUI();
         }
     }
     public void ApplyPizzaSlinger() {
         if (pizzaTokens >= pizzaSlingerCost && tossRate < maxTossRate) {
             SubtractPizzaTokens(pizzaSlingerCost);
-            pizzaSlingerCost *= 2;
-            UpdateGUI();
+            pizzaSlingerCost *= 2;            
             tossRate += 0.5f;
             tossSpeed += 2.0f;
             tossRange += 2.0f;
             if (tossRate > maxTossRate) { tossRate = maxTossRate; }
             if (tossSpeed > maxTossSpeed) { tossSpeed = maxTossSpeed; }
             if (tossRange > maxTossRange) { tossRange = maxTossRange; }
+            UpdateGUI();
         }
     }
 
@@ -113,18 +114,28 @@ public class PizzaToss : MonoBehaviour
         if (pizzaTokens >= hotChocolateCost && playerHealth < maxHP) {
             SubtractPizzaTokens(hotChocolateCost);
             hotChocolateCost *= 2;
-            UpdateGUI();
             playerHealth = maxHP;
             healthBarImg.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+            UpdateGUI();
         }
     }
     public void ApplyDynamite() {
-        if (pizzaTokens >= dynamiteCost) {
-            SubtractPizzaTokens(dynamiteCost);
-            dynamiteCost *= 2;
-            UpdateGUI();
-            // TODO - Dynamite Implementation
-        }
+        if (pizzaTokens < dynamiteCost) { return; }
+
+        List<Enemy> activeEnemies = new List<Enemy>();
+        foreach( Enemy e in enemyManager.GetComponentsInChildren<Enemy>() ) {
+            if (e.gameObject.activeSelf && e.isAlive) { activeEnemies.Add(e); }
+        }        
+        
+        if (activeEnemies.Count <= 0 ) { return; }
+
+        foreach( Enemy e in activeEnemies ) { e.ProcessDeath(); }
+
+        SubtractPizzaTokens(dynamiteCost);
+        dynamiteCost *= 2;
+
+        UpdateGUI();
+
     }
     public void AddPizzaTokens(int quantity) {        
         pizzaTokens += quantity;
@@ -173,10 +184,19 @@ public class PizzaToss : MonoBehaviour
         // Crystals
         tokenValueText.text = pizzaTokens.ToString();
 
-        // Shop Prices
-        speedPotionCostText.text = speedPotionCost.ToString();
-        pizzaSlingerCostText.text = pizzaSlingerCost.ToString();
-        hotChocolateCostText.text = hotChocolateCost.ToString();
+        // Speed Potion Shop Price
+        if (playerSpeed >= maxSpeed) { speedPotionCostText.text = "MAX"; }
+        else { speedPotionCostText.text = speedPotionCost.ToString(); }
+
+        // Speed Potion Shop Price
+        if ( tossRate >= maxTossRate && tossSpeed >= maxTossSpeed && tossRange >= maxTossRange) { pizzaSlingerCostText.text = "MAX"; }
+        else { pizzaSlingerCostText.text = pizzaSlingerCost.ToString(); }
+
+        // Speed Potion Shop Price
+        if (playerHealth >= maxHP) { hotChocolateCostText.text = "FULL"; }
+        else { hotChocolateCostText.text = hotChocolateCost.ToString(); }
+
+        // Dynamite Shop Price
         dynamiteCostText.text = dynamiteCost.ToString();
     }
 }

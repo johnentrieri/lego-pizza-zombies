@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.40272823, g: 0.3940638, b: 0.56190366, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -495,7 +495,7 @@ MonoBehaviour:
   shopPrompt: {fileID: 2074840190}
   defaultShopSelection: {fileID: 1194550109}
   openShopPrompt: Press Q to visit the Shop
-  closeShopPrompt: Press SPACE to Purchase | Press Q to exit the Shop
+  closeShopPrompt: A / D - Change Selection |  SPACE - Purchase |  Q  - Exit Shop
 --- !u!4 &155128640
 Transform:
   m_ObjectHideFlags: 0
@@ -504,12 +504,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155128638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -330.2708, y: -443.09897, z: 37.85327}
+  m_LocalPosition: {x: 26.589996, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1934198127}
-  m_Father: {fileID: 1933178990}
-  m_RootOrder: 6
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &160558631
 GameObject:
@@ -5326,11 +5326,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1847695594}
+    m_SelectOnRight: {fileID: 718275349}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.1137255, g: 0.1137255, b: 0.1254902, a: 1}
@@ -7795,11 +7795,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 2053139164}
+    m_SelectOnRight: {fileID: 1194550111}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.1137255, g: 0.1137255, b: 0.1254902, a: 1}
@@ -7824,7 +7824,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1847695595}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2063682135}
+        m_MethodName: ApplyDynamite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCustomClick:
     m_PersistentCalls:
       m_Calls: []
@@ -8264,7 +8275,6 @@ Transform:
   - {fileID: 1568396330}
   - {fileID: 289277714}
   - {fileID: 310724593}
-  - {fileID: 155128640}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9475,6 +9485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pizzaPrefab: {fileID: 6834157025679809932, guid: 289e0aad66a0e9a489358273220020e3,
     type: 3}
+  enemyManager: {fileID: 478612799}
   playerHealth: 10
   hotChocolateCost: 1000
   playerSpeed: 10
@@ -9487,7 +9498,7 @@ MonoBehaviour:
   tossRange: 10
   maxTossRange: 20
   pizzaSlingerCost: 500
-  dynamiteCost: 10000
+  dynamiteCost: 5000
   hurtAudioClip: {fileID: 8300000, guid: 5c2c11a2856204b4a80c94c0be91fb83, type: 3}
   newWaveAudioClip: {fileID: 8300000, guid: 29b351267e7df44c683ecdcca81d6100, type: 3}
   blinkTime: 0.5
@@ -9539,7 +9550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012398, y: -229}
+  m_AnchoredPosition: {x: 0.000012398, y: -156}
   m_SizeDelta: {x: 753.03, y: 35.941772}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074840192
