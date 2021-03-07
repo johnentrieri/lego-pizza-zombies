@@ -46,8 +46,6 @@ public class Shop : MonoBehaviour
         shopWindow.SetActive(true);
         promptText.text = closeShopPrompt;
         player.SetPlayerInputEnabled(false);
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
         EventSystem.current.SetSelectedGameObject(defaultShopSelection);
     }
 
@@ -55,7 +53,5 @@ public class Shop : MonoBehaviour
         shopWindow.SetActive(false);
         promptText.text = openShopPrompt;
         player.SetPlayerInputEnabled(true);
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 }
