@@ -60,6 +60,9 @@ public class PizzaToss : MonoBehaviour
             minifigAnimator.SetTrigger("Toss");
             SpawnPizza();            
         }
+        if (transform.position.y < -10) {
+            InflictDamage(playerHealth);
+        }
     }
     public void InflictDamage(int dmg) {
         if (isBlinking) { return; }
