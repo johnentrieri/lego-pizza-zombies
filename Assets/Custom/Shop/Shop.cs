@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
@@ -8,8 +9,10 @@ public class Shop : MonoBehaviour
     [SerializeField] float playerShopDistance = 5.0f;
     [SerializeField] GameObject shopWindow;
     [SerializeField] GameObject shopPrompt;    
+    [SerializeField] GameObject defaultShopSelection;
     [SerializeField] string openShopPrompt = "Press Q to visit the Shop";
-    [SerializeField] string closeShopPrompt = "Press Q to exit the Shop";
+    [SerializeField] string closeShopPrompt = "Press SPACE to Purchase | Press Q to exit the Shop";
+    
     private PizzaToss player;
     private float distanceToPlayer;
     private Text promptText;
@@ -17,11 +20,10 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PizzaToss>();
-        shopWindow.SetActive(false);
-        shopPrompt.SetActive(false);
         promptText = shopPrompt.GetComponentInChildren<Text>();
-        promptText.text = openShopPrompt;
+        player = FindObjectOfType<PizzaToss>();
+        CloseUpShop();
+        shopPrompt.SetActive(false);        
     }
 
     void Update()
@@ -44,14 +46,16 @@ public class Shop : MonoBehaviour
         shopWindow.SetActive(true);
         promptText.text = closeShopPrompt;
         player.SetPlayerInputEnabled(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        EventSystem.current.SetSelectedGameObject(defaultShopSelection);
     }
 
     private void CloseUpShop() {
         shopWindow.SetActive(false);
         promptText.text = openShopPrompt;
         player.SetPlayerInputEnabled(true);
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 }
