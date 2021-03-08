@@ -47,11 +47,13 @@ public class Shop : MonoBehaviour
         promptText.text = closeShopPrompt;
         player.SetPlayerInputEnabled(false);
         EventSystem.current.SetSelectedGameObject(defaultShopSelection);
+        Time.timeScale = 0.0f;
     }
 
     private void CloseUpShop() {
         shopWindow.SetActive(false);
         promptText.text = openShopPrompt;
         player.SetPlayerInputEnabled(true);
+        Time.timeScale = 1.0f;
     }
 }
