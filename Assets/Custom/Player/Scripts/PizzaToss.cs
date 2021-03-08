@@ -83,17 +83,15 @@ public class PizzaToss : MonoBehaviour
             }
         }
     }
+    
     public void InflictDamage(int dmg) {
         if (isBlinking) { return; }
         audioSource.PlayOneShot(hurtAudioClip);
         playerHealth -= dmg;
+        if (playerHealth <= 0) {  playerHealth = 0; }
         UpdateGUI();
-        StartCoroutine( Blink() );        
-
-        if (playerHealth <= 0) { 
-            playerHealth = 0;
-            ProcessDeath(); 
-        }
+        StartCoroutine( Blink() );
+        if (playerHealth <= 0) { ProcessDeath(); }
     }
 
     public void PlayNewWaveAudio() {
