@@ -10,9 +10,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] float timeBetweenWaves = 5.0f;
     [SerializeField] int minLoot = 1;
     [SerializeField] int maxLoot = 3;
-    [SerializeField] float lootRange = 4;
+    [SerializeField] float lootRange = 5.5f;
     [SerializeField] GameObject lootPrefab;
     [SerializeField] GameObject winObjectPrefab;
+    [SerializeField] GameObject tokenPoolTransform;
     [SerializeField] Text waveText;
     [SerializeField] int maxWaves = 28;
     [SerializeField] int maxEnemies = 250;
@@ -102,9 +103,6 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies() {
         for (int i=0; i < spawnedEnemies; i++) {
-            //Vector3 spawnPosition = ChooseRandomSpawnPoint().position;       
-            //EnemyType enemyType = ChooseRandomEnemyType();
-            //Instantiate(enemyType.enemyPrefab,spawnPosition,Quaternion.identity,transform);
             if (enemyPool.Count > 0) { 
                 GameObject tempEnemy = enemyPool.Pop();
                 tempEnemy.GetComponentInChildren<Enemy>().SetSpeed(enemySpeed);
@@ -117,22 +115,35 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnLoot(Enemy enemy) {
 
+        // Random Roll for Loot
         int numLoot = LootRoll(enemy);
 
-        for (int i=0;i<numLoot;i++) {
-            Vector3 lootSpawnPosition = new Vector3(
-                enemy.transform.position.x + Random.Range(0,lootRange),
-                0,
-                enemy.transform.position.z + Random.Range(0,lootRange)
-            );
+        // Already Loot nearby to Combine with?
+        foreach ( PizzaToken token in tokenPoolTransform.GetComponentsInChildren<PizzaToken>() ) {
+            float lootDistance = Vector3.Distance(enemy.transform.position,token.transform.position);
 
-            if (lootPool.Count > 0) {
+            if (lootDistance <= lootRange) {
+                token.UpgradeToken(numLoot);
+                return;
+            }
+        }
+
+        // New Loot Position
+        Vector3 lootPosition = new Vector3(enemy.transform.position.x, 0.0f, enemy.transform.position.z);
+
+        // Pull from Loot Pool if any
+        if (lootPool.Count > 0) {
                 PizzaToken loot = lootPool.Pop();
                 hiddenGridCounter--;
-                loot.Reanimate(lootSpawnPosition);
-            } else {            
-                Instantiate(lootPrefab,lootSpawnPosition,Quaternion.identity);
-            }
+                loot.Reanimate(lootPosition);
+                loot.GetComponentInChildren<PizzaToken>().UpgradeToken( numLoot-1 );
+
+        } 
+        
+        // Create New Loot
+        else {            
+            GameObject loot = Instantiate(lootPrefab,lootPosition,Quaternion.identity,tokenPoolTransform.transform);
+            loot.GetComponentInChildren<PizzaToken>().UpgradeToken( numLoot-1 );
         }
     }
 

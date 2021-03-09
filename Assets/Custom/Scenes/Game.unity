@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40272823, g: 0.3940638, b: 0.56190366, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -874,6 +874,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1268360148}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &90469269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90469270}
+  m_Layer: 0
+  m_Name: Token Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90469270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90469269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.5, y: 2.08, z: 20.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &94241383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4280,10 +4310,11 @@ MonoBehaviour:
   timeBetweenWaves: 5
   minLoot: 1
   maxLoot: 3
-  lootRange: 4
+  lootRange: 5.5
   lootPrefab: {fileID: 3452600609016939167, guid: 8f7153ad91470d04794e03b6eb0e6910,
     type: 3}
   winObjectPrefab: {fileID: 847859463}
+  tokenPoolTransform: {fileID: 90469269}
   waveText: {fileID: 1253165847}
   maxWaves: 28
   maxEnemies: 250
