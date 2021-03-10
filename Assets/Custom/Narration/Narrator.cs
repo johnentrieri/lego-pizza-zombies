@@ -20,8 +20,9 @@ public class Narrator : MonoBehaviour
 
         // Intro Narration
         Narrate("I'll keep the pizza coming, head out and start delivering!", 3.0f, 1.0f);
-        Narrate("Use your mouse to look around and W,A,S,D keys to move.", 5.0f, 5.0f);
-        Narrate("Left Click or Press E to toss a pizza to a hungry customer.", 5.0f, 11.0f);
+        Narrate("Use your MOUSE to look around and the W,A,S,D keys to MOVE", 4.0f, 5.0f);
+        Narrate("Press SPACE to JUMP. Pressing SPACE twice will DOUBLE JUMP", 4.0f, 10.0f);
+        Narrate("LEFT CLICK or Press E to TOSS a pizza to a hungry customer", 5.0f, 15.0f);
     }
 
     public void Narrate( string message, float duration, float delay) {        

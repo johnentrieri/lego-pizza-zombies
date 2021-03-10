@@ -77,8 +77,8 @@ public class PizzaToss : MonoBehaviour
         // Shop Narration
         if ( !hasIssuedShopNarration ) {
             if (pizzaTokens >= PriceOfLowestCostItem()) {
-                narrator.Narrate("Looks like you've collected a couple of Pizza Tokens", 5.0f, 0.5f );
-                narrator.Narrate("You can head back to the shop at any time and trade them in for upgrades", 5.0f, 6.0f );
+                narrator.Narrate("Looks like you've collected a couple of PIZZA TOKENS", 5.0f, 0.5f );
+                narrator.Narrate("Head back to the SHOP to trade them in for UPGRADES", 8.0f, 6.0f );
                 hasIssuedShopNarration = true;
             }
         }
