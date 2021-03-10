@@ -3878,11 +3878,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754913856}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 93}
+  m_AnchoredPosition: {x: 0, y: 118}
   m_SizeDelta: {x: 475.3, y: 42.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357743316
@@ -6249,6 +6249,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 696835812}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &698678090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698678093}
+  - component: {fileID: 698678092}
+  - component: {fileID: 698678091}
+  m_Layer: 0
+  m_Name: Item Description Long Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &698678091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698678090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8c40122aded574c538617bb84b66784d, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 2
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Example Item Description Text. Example Item Description Text. Example Item
+    Description Text. Example Item Description Text. Example Item Description Text.
+--- !u!222 &698678092
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698678090}
+  m_CullTransparentMesh: 0
+--- !u!224 &698678093
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698678090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754913856}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.3, y: -116.6}
+  m_SizeDelta: {x: 600.56616, y: 55.286316}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &699291743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6409,6 +6488,7 @@ GameObject:
   - component: {fileID: 718275351}
   - component: {fileID: 718275350}
   - component: {fileID: 718275349}
+  - component: {fileID: 718275352}
   m_Layer: 0
   m_Name: Pizza Slinger
   m_TagString: Untagged
@@ -6431,11 +6511,11 @@ RectTransform:
   - {fileID: 1024082464}
   - {fileID: 2025762211}
   m_Father: {fileID: 754913856}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89, y: -10.8}
+  m_AnchoredPosition: {x: -89, y: 14.2}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &718275349
@@ -6532,6 +6612,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718275347}
   m_CullTransparentMesh: 0
+--- !u!114 &718275352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718275347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4747d3bd8c81440a1b330667109253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortItemDescription: A Slingshot, but for Pizzas
+  longItemDescription: Allows you to toss your pizzas faster, further, and more often
+  shortTextObject: {fileID: 1946217180}
+  longTextObject: {fileID: 698678091}
 --- !u!1001 &729242428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6998,18 +7094,20 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 357743315}
   - {fileID: 1194550110}
   - {fileID: 718275348}
   - {fileID: 2053139163}
   - {fileID: 1847695593}
-  - {fileID: 357743315}
+  - {fileID: 1946217179}
+  - {fileID: 698678093}
   m_Father: {fileID: 941314226}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012398, y: 40.1}
-  m_SizeDelta: {x: 724.1, y: 238.8}
+  m_AnchoredPosition: {x: 0.000012398, y: 37.3}
+  m_SizeDelta: {x: 724.1, y: 302.6145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &757941472
 GameObject:
@@ -11679,6 +11777,7 @@ GameObject:
   - component: {fileID: 1194550113}
   - component: {fileID: 1194550112}
   - component: {fileID: 1194550111}
+  - component: {fileID: 1194550114}
   m_Layer: 0
   m_Name: Speed Potion
   m_TagString: Untagged
@@ -11701,11 +11800,11 @@ RectTransform:
   - {fileID: 335025564}
   - {fileID: 1228967622}
   m_Father: {fileID: 754913856}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267, y: -10.8}
+  m_AnchoredPosition: {x: -267, y: 14.2}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194550111
@@ -11802,6 +11901,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194550109}
   m_CullTransparentMesh: 0
+--- !u!114 &1194550114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194550109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4747d3bd8c81440a1b330667109253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortItemDescription: Bubbly Unmarked Liquid
+  longItemDescription: Gives you a permanent speed boost
+  shortTextObject: {fileID: 1946217180}
+  longTextObject: {fileID: 698678091}
 --- !u!1001 &1199476358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18460,6 +18575,7 @@ GameObject:
   - component: {fileID: 1847695596}
   - component: {fileID: 1847695595}
   - component: {fileID: 1847695594}
+  - component: {fileID: 1847695597}
   m_Layer: 0
   m_Name: Dynamite
   m_TagString: Untagged
@@ -18482,11 +18598,11 @@ RectTransform:
   - {fileID: 10888187}
   - {fileID: 763115523}
   m_Father: {fileID: 754913856}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 267, y: -10.8}
+  m_AnchoredPosition: {x: 267, y: 14.2}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847695594
@@ -18583,6 +18699,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847695592}
   m_CullTransparentMesh: 0
+--- !u!114 &1847695597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847695592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4747d3bd8c81440a1b330667109253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortItemDescription: Tired of This Job?
+  longItemDescription: 'Detonates an expolosion of pizza proportions - satisyfing
+    the hunger of all hungry customers WARNING: Purchasing this will consume it immediately...
+    make sure there are hungry customers around '
+  shortTextObject: {fileID: 1946217180}
+  longTextObject: {fileID: 698678091}
 --- !u!1 &1851018957
 GameObject:
   m_ObjectHideFlags: 0
@@ -20336,6 +20470,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 422c298e5edde4efeb679ddef8883c33, type: 3}
+--- !u!1 &1946217178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946217179}
+  - component: {fileID: 1946217181}
+  - component: {fileID: 1946217180}
+  m_Layer: 0
+  m_Name: Item Description Short Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1946217179
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946217178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754913856}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.2, y: -84.2}
+  m_SizeDelta: {x: 664.4585, y: 29.75299}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1946217180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946217178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8c40122aded574c538617bb84b66784d, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Example Item Description Text
+--- !u!222 &1946217181
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946217178}
+  m_CullTransparentMesh: 0
 --- !u!4 &1975306964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6716099289787666382, guid: 4fd4c4cd480be784099ba5e52899bfb7,
@@ -21325,6 +21537,7 @@ GameObject:
   - component: {fileID: 2053139166}
   - component: {fileID: 2053139165}
   - component: {fileID: 2053139164}
+  - component: {fileID: 2053139167}
   m_Layer: 0
   m_Name: Hot Chocolate
   m_TagString: Untagged
@@ -21347,11 +21560,11 @@ RectTransform:
   - {fileID: 160558632}
   - {fileID: 1501487896}
   m_Father: {fileID: 754913856}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 89, y: -10.8}
+  m_AnchoredPosition: {x: 89, y: 14.2}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2053139164
@@ -21448,6 +21661,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053139162}
   m_CullTransparentMesh: 0
+--- !u!114 &2053139167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053139162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4747d3bd8c81440a1b330667109253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortItemDescription: Just the Right Temperature
+  longItemDescription: Restores you to full health
+  shortTextObject: {fileID: 1946217180}
+  longTextObject: {fileID: 698678091}
 --- !u!1001 &2061899840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21639,7 +21868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012398, y: -106}
+  m_AnchoredPosition: {x: 0.000012398, y: -136.86}
   m_SizeDelta: {x: 724.7, y: 35.941772}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074840192
