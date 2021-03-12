@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dynamite
+  m_Text: Pizza Party
 --- !u!222 &10888189
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6625,7 +6625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortItemDescription: A Slingshot, but for Pizzas
-  longItemDescription: Allows you to toss your pizzas faster, further, and more often
+  longItemDescription: You'll toss your pizzas faster, further, and more often
   shortTextObject: {fileID: 1946217180}
   longTextObject: {fileID: 698678091}
 --- !u!1001 &729242428
@@ -18711,10 +18711,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4747d3bd8c81440a1b330667109253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shortItemDescription: Tired of This Job?
+  shortItemDescription: In a Tight Spot? Throw a Pizza Party!
   longItemDescription: 'Detonates an expolosion of pizza proportions - satisyfing
-    the hunger of all hungry customers WARNING: Purchasing this will consume it immediately...
-    make sure there are hungry customers around '
+    the hunger of all hungry customers WARNING: Consumed IMMEDIATELY... make sure
+    customers are around to enjoy it'
   shortTextObject: {fileID: 1946217180}
   longTextObject: {fileID: 698678091}
 --- !u!1 &1851018957
