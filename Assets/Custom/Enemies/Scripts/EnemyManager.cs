@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] EnemyType[] enemyTypes; 
+    [SerializeField] float introDelay = 5.0f;
     [SerializeField] float timeBetweenSpawns = 1.0f;
     [SerializeField] float timeBetweenWaves = 5.0f;
     [SerializeField] int minLoot = 1;
@@ -28,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     private float enemySpeed = 8.0f;
     private float enemyAttackSpeed = 1.0f;
     private PizzaToss player;
+    private bool introWave = true;
 
     [System.Serializable] class EnemyType {
         public GameObject enemyPrefab;
@@ -84,8 +86,12 @@ public class EnemyManager : MonoBehaviour
     private void ProcessWavesComplete() {
         winObjectPrefab.SetActive(true);
     }
+    private IEnumerator StartNextWave() {  
 
-    private IEnumerator StartNextWave() {   
+        if (introWave) {
+            introWave = false;
+            yield return new WaitForSeconds(introDelay);
+        } 
         
         if (waveNum < 6) { spawnedEnemies = waveNum; }
         else if (waveNum < 10) { spawnedEnemies = 6; }
